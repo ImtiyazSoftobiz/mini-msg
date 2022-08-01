@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="displa">
+        <table class="tha">
+            <thead>
+                <th >Name</th>
+                <hr> <br><br>
+                <th class="kl">Status</th>
+                
+            </thead>
+            <tbody id="list">
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <script>
+        fetch(
+            `http://localhost:7878/text`
+
+        ).then(res => { return res.json() }).then(data => display(data));
+        function display(data) {
+
+            document.getElementById("list").innerHTML = "";
+
+            for (let i = 0; i < data.length; i++) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td> ${data[i].name} </td> <hr><td> ${data[i].text} </td>`;
+
+                document.getElementById("list").appendChild(row);
+            }
+        }     
+    </script>
+</body>
+</html>
